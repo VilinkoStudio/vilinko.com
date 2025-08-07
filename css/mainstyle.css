@@ -205,12 +205,14 @@ position:relative;width:auto;height:100%;image-rendering: -webkit-optimize-contr
     */
 }
 .iView img{
+  margin:15px 15px;
   user-select: none;
   position:fixed;
     transition:0.2s;
       transform:scale(1);
       box-shadow: 0px 0px 0px 0px #737fbc;
-      width:45%;
+      width: calc(45% - 30px);
+    height: calc(100% - 30px);
 user-drag: none;
 -webkit-user-drag: none;
 overflow:hidden;
@@ -219,15 +221,18 @@ object-position: 50% 50%;
        animation-duration: 1s;
     animation-fill-mode: both;
     animation-name: DivBlurIn;
+    border-radius:12px;
 }
 .iViewFloatBox {
   display:block;
   position:fixed;
-  right:30px;
-  top:30px;
+  right:35px;
+  top:35px;
   width:200px;
   height:40px;
-  background-color: rgba(20,20,20,0.45);
+  background-color: rgba(255,255,255,1);
+    box-shadow: 0px 0px 0px 2px RGB(0,0,0);
+  color:rgba(0,0,0,0.95);
   border-radius:8px;
   z-index: 10;
 transition: all .3s cubic-bezier(0.74, 0, 0.15, 1);
@@ -235,27 +240,29 @@ transition: all .3s cubic-bezier(0.74, 0, 0.15, 1);
 .iViewFloatRefreshBox {
   display:block;
   position:fixed;
-  right:30px;
-  bottom:30px;
+  box-shadow: 0px 0px 0px 2px RGB(0,0,0);
+  right:35px;
+  bottom:35px;
   width:40px;
   height:40px;
-  background-color: rgba(20,20,20,0.45);
+  background-color: rgba(255,255,255,1);
   border-radius:8px;
   z-index: 10;
-  color:rgba(255,255,255,0.95);
+  color:rgba(0,0,0,0.95);
 transition: all .3s cubic-bezier(0.74, 0, 0.15, 1);
 }
 .iViewFloatScrollBox {
+  box-shadow: 0px 0px 0px 2px RGB(0,0,0);
   display:block;
   position:fixed;
-  right:90px;
-  bottom:30px;
+  right:95px;
+  bottom:35px;
   width:115px;
   height:40px;
-  background-color: rgba(20,20,20,0.45);
+  background-color: rgba(255,255,255,1);
   border-radius:8px;
   z-index: 10;
-  color:rgba(255,255,255,0.95);
+  color:rgba(0,0,0,0.95);
 transition: all .3s cubic-bezier(0.74, 0, 0.15, 1);
 }
 .biTransNormal
@@ -289,7 +296,7 @@ transition: all .3s cubic-bezier(0.74, 0, 0.15, 1);
 word-wrap:break-word;
   margin-top:12px;
   margin-left:10px;
-  color:rgba(255,255,255,0.95);
+  color:rgba(0,0,0,0.95);
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif!important;
 }
 .iViewDrawer{
@@ -653,4 +660,32 @@ transform: translateZ(1px) translateY(12.5%);
 {
   transition:.3s;
   transform:rotateZ(90deg) translateX(2px);
+}
+.ProjectSect
+{
+  overflow:hidden;
+  width:100%;
+    position:relative;
+white-space:nowrap;
+  float:left;
+
+}
+ .ProjectCover
+{
+  left:-10px;
+    display:inline-block;
+  margin-left:10px;
+  position:relative;
+  width:200px;
+  height:300px;
+  background-color: RGB(155,155,155);
+  border-radius:12px;
+}
+@media screen and (max-width: 820px)
+{
+  .ProjectCover
+{
+  width:260px;
+  height:300px;
+}
 }
