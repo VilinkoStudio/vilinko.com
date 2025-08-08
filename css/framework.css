@@ -6,6 +6,8 @@
 html, body {
     background-color: #13193c;
     transition: 0s;
+        -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {

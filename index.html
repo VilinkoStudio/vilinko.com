@@ -62,7 +62,54 @@
 </svg></a>
 </div>
 
+<div class="PageBox">
 
+<div style="margin-top:80px;height:50px;"></div>
+  <span class="PageBoxTitle">PROJECTS</span>
+  <div style="height:20px;"></div>
+      <div class="ProjectSect">
+        <div style="overflow-x:scroll;" class="ProjectBar">
+        <div style="width:1200px;">
+  <div class="ProjectCover">
+    <div class="ProjectInner">
+    <div>
+    <img src="img/NewDesignIco.png" style="height:48px; width:auto;border-radius:16px; box-shadow:3px 3px 5px 2px RGB(20,20,20,0.1); transform:translateY(-3px); vertical-align: middle;padding:0px;margin:15px;border:0;"></img>
+      </div>
+    <p class="coverTitle" style="transform:translateY(-28px)">LIGHTFRAME</p>
+</div>
+    <p class="con-text2"style="margin-top:5px">完全免费、由每一个用户支持、面向用户的轻量级创作型桌面优化应用程序。</p>
+    <button class="innerItem" style="float:right;right:18px;top:80%;position:absolute;"onclick="window.open('https://lightframe.vilinko.com', '_blank');">Learn More</button>
+  </div>
+
+  <div class="ProjectCover">
+    <div class="ProjectInner">
+    <div>
+    <img src="img/products_vuip.png" style="height:48px; width:auto;border-radius:16px; box-shadow:3px 3px 5px 2px RGB(20,20,20,0.1); transform:translateY(-3px); vertical-align: middle;padding:0px;margin:15px;border:0;"></img>
+      </div>
+    <p class="coverTitle" style="transform:translateY(-28px)">VUI.PARSER</p>
+</div>
+    <p class="con-text2"style="margin-top:5px">简易、开源、轻量的数据解析器。</p>
+    <button class="innerItem" style="float:right;right:18px;top:80%;position:absolute;" onclick="window.open('https://docs.vilinko.com/docs/vui.parser/', '_blank');">Learn More</button>
+  </div>
+
+
+ <div class="ProjectCover">
+    <div class="ProjectInner">
+    <div>
+    <img src="img/products_vina.png" style="height:48px; width:auto;border-radius:16px; box-shadow:3px 3px 5px 2px RGB(20,20,20,0.1); transform:translateY(-3px); vertical-align: middle;padding:0px;margin:15px;border:0;"></img>
+      </div>
+    <p class="coverTitle" style="transform:translateY(-28px)">VINA UI</p>
+</div>
+    <p class="con-text2"style="margin-top:5px">轻量、开源、但尚未完善的DirectUI框架。</p>
+    <button class="innerItem" style="float:right;right:18px;top:80%;position:absolute;" onclick="window.open('https://docs.vilinko.com/docs/vui.parser/', '_blank');">Learn More</button>
+  </div>
+ 
+
+</div>
+<div class="ProjectGradient"></div>
+</div>
+</div>
+</div>
 
 <div class="PageBox">
 <div style="margin-top:80px;height:50px;">
@@ -222,7 +269,11 @@ function scrollFunction() {
   }
 }
 
-
+const container = document.querySelector('.ProjectBar');
+container.addEventListener('wheel', (event) => {
+event.preventDefault();
+container.scrollLeft += event.deltaY;
+});
 
   </script>
      
