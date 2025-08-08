@@ -1,349 +1,405 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>VertexStudio</title>
+  <head>
+    <link rel="icon" href="img/Newico.png" />
+    <link rel="apple-touch-icon" href="img/Newico.png" />
+     <meta name="robots" content="max-snippet:-1,max-image-preview:standard,max-video-preview:-1,index,follow" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+      <meta name="description" content="这里是Vilinko Studio的官方创意小站~我们会在这里更新作品开发动态、分享灵感，关注我们，在这里创造与惊喜的相遇!" />
+  <meta name="keywords" content="vilinko,Vilinko,Vilinko工作室,vertillusion,Vertillusion,VIS工作室,VIS,Vertillusion工作室" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vilinko: Meet, Inspire, Create.</title>
     <style>
-        #canvas{
-            position: absolute;
-            display: block;
-            left:0;
-            top:0;
-            background: #0f0f0f;
-            z-index: -1;
-        }
+      body, html {
+        min-width: 100%;
+        min-height: 100%;
+        height: 100%; 
+        width: 100%;  
+        margin: 0;
+        padding: 0;
+        font: Arial 18px;
+      }
     </style>
-<style>
-@keyframes scaleDraw {  /*定义关键帧、scaleDrew是需要绑定到选择器的关键帧名称*/
-            0%{
-                transform: scale(1);  /*开始为原始大小*/
-            }
-            25%{
-                transform: scale(1.1); /*放大1.1倍*/
-            }
-            50%{
-                transform: scale(1);
-            }
-            75%{
-                transform: scale(1.1);
-            }
-        }
-
- ul li ul {
-  position: relative;
-  min-height: 5%;
-  font-family: 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
-  font-size: 17px;
-  line-height: 4;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-box2 {
-position: absolute;
-left: 50%;
-top: 50%;
-/* 设置元素的相对于自身的偏移度为负50%(也就是元素自身尺寸的一半)*/
-transform: translate(-50%, -50%);
-}
-@keyframes fade-in {  
-    0% {opacity: 0;}/*过渡状态 透明度为0*/  
-    40% {opacity: 0;}/*过渡状态 透明度为0*/  
-    100% {opacity: 1;}/*结束状态 透明度为1*/  
-}  
-@-webkit-keyframes fade-in {/*针对webkit内核*/
-    0% {opacity: 0;}/*过渡状态 透明度为0*/  
-    40% {opacity: 0;}  
-    100% {opacity: 1;}  
-}  
-@keyframes move-appear{
-	from{
-		transform: translate(0,-10%);
-		opacity: 0;
-	}
-	to{
-		transform: translate(0,0);
-		opacity: 1;
-	}
-}
-</style>
-<style>
-#button {
-		font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-		position: absolute;
-		font-size: 1.5em;
-		text-transform: uppercase;
-		padding: 7px 20px;
-		left: 50%;
-		width: 200px;
-		margin-left: -100px;
-		top: 60%;
-		border-radius: 10px;
-		color: white;
-		text-shadow: -1px -1px 1px rgba(0,0,0,0.8);
-		border: 5px solid transparent;
-		border-bottom-color: rgba(0,0,0,0.35);
-		background: hsla(260, 100%, 50%, 1);
-		cursor: pointer;
-
-		animation: pulse 1s infinite alternate;
-		transition: background 0.4s, border 0.2s, margin 0.2s;
-	}
-	#button:hover {
-		background: hsla(220, 100%, 60%, 1);
-		margin-top: -1px;
-
-		animation: none;
-	}
-	#button:active {
-		border-bottom-width: 0;
-		margin-top: 5px;
-	}
-	@keyframes pulse {
-		0% {
-			margin-top: 0px;
-		}
-		100% {
-			margin-top: 6px; 
-		} 
-	}
-#gradient{animation:change 20s infinite;font-weight:100; font-family:Arial,Verdana,Sans-serif,HelveticaNeue LT 33 ThinEx}
-@keyframes change{0%{color:#5cb85c;}10%{color:#556bd8;}20%{color:#F44336;}30%{color:#66e616;}40% {color:#67bd31;}50%{color:#FF8E37;}60%{color:#1488F4;}70%{color:#87C540;}80%{color:#33FF8A;}90%{color:#FEFEFE;}100%{color:#5cb85c;}}
-</style>
-       <style type="text/css">
-        .top{
-    /* 设置宽度高度背景颜色 */
-    height: auto; /*高度改为自动高度*/
-    width:100%;
-    margin-left: 0;
-    background:rgba(37,42,51,1.00);
-    position: fixed; /*固定在顶部*/
-    top: 0;/*离顶部的距离为0*/
-    margin-bottom: 5px;
-}
-.top ul{
-    /* 清除ul标签的默认样式 */
-    width: auto;/*宽度也改为自动*/
-    list-style-type: none;
-    white-space:nowrap;
-    overflow: hidden;
-    margin-left: 12%;
-    /* margin-top: 0;          */
-    padding: 0;
-
-}
-.top li {
-    float:left; /* 使li内容横向浮动，即横向排列  */
-    margin-right:2%;  /* 两个li之间的距离*/
-    position: relative;
-    overflow: hidden;
-}
-
-.top li a{
-   /* 设置链接内容显示的格式*/
-    display: block; /* 把链接显示为块元素可使整个链接区域可点击 */
-    color:white;
-    text-align: center;
-    padding: 3px;
-    overflow: hidden;
-    text-decoration: none; /* 去除下划线 */
-    
-}
-.top li a:hover{
-    /* 鼠标选中时背景变为黑色 */
-    /*background-color: #111;*/
-    -webkit-animation: scaleDraw 5s ease-in-out infinite;
-}
-.top ul li ul{
-    /* 设置二级菜单 */
-    margin-left: -0.2px;
-    background:rgba(60,60,60,1.00);
-    position: relative;
-    display: none; /* 默认隐藏二级菜单的内容 */
-
-}
-.top ul li ul li{
-    /* 二级菜单li内容的显示 */
-    
-    float:none;
-    text-align: center;
-}
-.top ul li:hover ul{
-    /* 鼠标选中二级菜单内容时 */
-    animation: fade-in;/*动画名称*/  
-    animation-duration: 0.7s;/*动画持续时间*/  
-    -webkit-animation:fade-in 0.7s;/*针对webkit内核*/  
-    display: block;
-}
-.top ri {
-    float:right; /* 使li内容横向浮动，即横向排列  */
-    margin-right:13.5%;  /* 两个li之间的距离*/
-    position: relative;
-    overflow: hidden;
-}
-
-.top ri a{
-   /* 设置链接内容显示的格式*/
-    display: block;  /*把链接显示为块元素可使整个链接区域可点击 */
-    color:white;
-    text-align: center;
-    padding: 3px;
-    overflow: hidden;
-    text-decoration: none; /* 去除下划线 */
-    
-}
-.top ri a:hover{
-    /* 鼠标选中时背景变为黑色 */
-    background-color: #00A4EF;
-}
-body{
-    background:#494A5F;
-    /* 这里是颜色设定啦！QwQ还原色#eff3f5 */
-}	  
-</style>
-
-</head>
-<body>
-<canvas id="canvas"></canvas>
-<script>
-var $ = {};
-    var canvas = document.getElementById("canvas");
-    var ctx = canvas.getContext("2d");
-    var opt = {
-        particleAmount: 50,     //粒子个数
-        defaultSpeed: 0.8,        //粒子运动速度
-        variantSpeed: 1,        //粒子运动速度的变量
-        particleColor: 'hsl(' + 360 * Math.random() + ', 100%, 60%)',       //粒子的颜色
-        lineColor:'hsl(' + 360 * Math.random() + ', 320%, 60%)',            //网格连线的颜色
-        defaultRadius: 2,           //粒子半径
-        variantRadius: 2,           //粒子半径的变量
-        minDistance: 200            //粒子之间连线的最小距离
-    };
-    var line = opt.lineColor.match(/\d+/g);
-    console.log(line);
-    var particle = [], w,h;
-    var delay = 200,tid;
-    init();
-    window.addEventListener("resize",function(){
-        winResize()
-    },false);
-
-    function winResize(){
-        clearTimeout(tid);
-        tid = setTimeout(function(){
-            getSize();
-        },delay)
-    }
-
-    function init(){
-        getSize();
-        for(let i = 0;i<opt.particleAmount; i++){
-            particle.push(new Partical());
-        }
-        loop();
-    }
-
-    function loop(){
-        ctx.clearRect(0,0,w,h);
-        for(let i = 0;i<particle.length; i++){
-            particle[i].update();
-            particle[i].draw();
-        }
-        for(let i = 0;i<particle.length; i++){
-            linePoint(particle[i],particle)
-        }
-        window.requestAnimationFrame(loop);
-    }
-
-    function linePoint(point,hub){
-        for(let i = 0;i<hub.length;i++){
-            let distance = getDistance(point,hub[i]);
-            let opacity = 1 -distance/opt.minDistance;
-            if(opacity > 0){
-                ctx.lineWidth = 0.5;
-                ctx.strokeStyle = "rgba("+line[0]+","+line[1]+","+line[2]+","+opacity+")";
-                ctx.beginPath();
-                ctx.moveTo(point.x,point.y);
-                ctx.lineTo(hub[i].x,hub[i].y);
-                ctx.closePath();
-                ctx.stroke();
-            }
-        }
-    }
-
-    function getDistance(point1,point2){
-        return Math.sqrt(Math.pow(point1.x-point2.x,2) + Math.pow(point1.y - point2.y ,2));
-    }
-
-    function getSize(){
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-    }
-    function Partical(){
-        this.x = Math.random()*w;           //粒子的x轴坐标
-        this.y = Math.random()*h;           //粒子的y轴坐标
-        this.speed = opt.defaultSpeed + opt.variantSpeed*Math.random();     //粒子的运动速度
-        this.directionAngle = Math.floor(Math.random()*360);                //粒子运动的方向
-        this.color = opt.particleColor ;                                    //粒子的颜色
-        this.radius = opt.defaultRadius+Math.random()*opt.variantRadius;    //粒子的半径大小
-        this.vector = {
-            x:this.speed * Math.cos(this.directionAngle),       //粒子在x轴的速度
-            y:this.speed * Math.sin(this.directionAngle)        //粒子在y轴的速度
-        }
-        this.update = function(){                   //粒子的更新函数
-            this.border();                           //判断粒子是否到了边界
-            this.x += this.vector.x;                //粒子下一时刻在x轴的坐标
-            this.y += this.vector.y;                //粒子下一时刻在y轴的坐标
-        }
-        this.border = function(){               //判断粒子是都到达边界
-            if(this.x >= w || this.x<= 0){      //如果到达左右边界，就让x轴的速度变为原来的负数
-                this.vector.x *= -1;
-            }
-            if(this.y >= h || this.y <= 0){     //如果到达上下边界，就让y轴的速度变为原来的负数
-                this.vector.y *= -1;
-            }
-            if(this.x > w){                     //下面是改变浏览器窗口大小时的操作，改变窗口大小后有的粒子会被隐藏，让他显示出来即可
-                this.x = w;
-            }
-            if(this.y > h){
-                this.y = h;
-            }
-            if(this.x < 0){
-                this.x = 0;
-            }
-            if(this.y < 0){
-                this.y = 0;
-            }
-        }
-        this.draw = function(){                 //绘制粒子的函数
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius ,0 ,Math.PI * 2);
-            ctx.closePath();
-            ctx.fillStyle = this.color;
-            ctx.fill();
-        }
-    }
-</script>
-<body>
-            <div class="top">
-                   <center> 
-                    <ul>
-                    <li><a href="#">主站</a></li>
-						
-			    <ri><a href="studio.endermo">查看docs</a></ri>
-						<li>
-						<a href="#">传送门</a>
-						<ul>
-						<li><a href="Hub/EMOS/CLoad" style="color:#3c4e;">EMOS着色器</a></li>
-                                                <li><a href="https://jq.qq.com/?_wv=1027&k=glGHx14l" style="color:#bf2f3e;">小末工作室</a></li>
-						<li><a href="https://api.endermo.xyz/" style="color:#ec4e6e;">API入口</a></li>
-						</ul>       
-                      </ul>
-                    </center> 
-            </div>
-<div id="gradient">
-<box2 style="font-size:64px">VertexStudio</box2>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/waterfall-main.css">
+     <link rel="stylesheet" href="css/mainstyle.css">
+  </head>
+  <body>
+    <div class="iView">
+  <img src="img/Visika.png"class="ViewContent"id="iView_bg" />
+  <div class="iViewFloatBox" ><p id="iView_t">Visika I</p><p id="iView_hidden">[价值与美不为任何方圆所束缚] (Art by CimiMoly)</p></div>
+    <div class="iViewFloatRefreshBox" onclick="refreshBackground();"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="biTransNormal" viewBox="0 0 16 16">
+  <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+  <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+</svg></div>
+<div class="iViewFloatScrollBox" onclick="ToggleDrawer();"><btx>Scroll Up</btx><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="biTransNormal" viewBox="0 0 16 16">
+  <path d="M3 5.188C3 2.341 5.22 0 8 0s5 2.342 5 5.188v5.625C13 13.658 10.78 16 8 16s-5-2.342-5-5.188V5.189zm4.5-4.155C5.541 1.289 4 3.035 4 5.188V5.5h3.5V1.033zm1 0V5.5H12v-.313c0-2.152-1.541-3.898-3.5-4.154zM12 6.5H4v4.313C4 13.145 5.81 15 8 15s4-1.855 4-4.188V6.5z"/>
+</svg></div>
+<div class="iViewDrawer">
+  <div class="iViewDrawerCont" style="padding:20px">
+  <h2 style="">CimiMoly 's box</h2> 
+  <img src="img/ins1.svg" style="margin-top:20px;width:40px;height:40px;" onclick=" window.open('https://www.instagram.com/cimimoly/');">
+  <img src="img/dribbble-color.svg" style="width:40px;height:40px;margin-top:20px;margin-left:80px;"onclick=" window.open('https://dribbble.com/CimiMoly');">
+  <img src="img/youtube-com.svg" style="width:40px;height:40px;margin-top:20px;margin-left:160px;"onclick=" window.open('https://www.youtube.com/channel/UC8LriMWw_S6F4TzZW7R5HGA');">
 </div>
-  <button id="button">现在加入</button>
-</body>
-</html>
+</div>
 
+</div>
+    <div class="Content" id="mainCon" onscroll="scrollFunction();">
+    <div style="position:relative;top:0px;height:50px;width:auto;  padding: 50px 10px; ">
+  <div id="navbar">
+      
+  </div>
+</div>
+<!--content-->
+<div class="pageTitleDiv">
+  <p class="pageTitle">Meet , Inspire , Create</p>
+  <a class="pageTitleDes center-line" style="transform:translateY(-2rem);" href="#?link=stories/discover.html">Discover <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+</svg></a>
+</div>
+
+<div class="PageBox">
+
+<div style="margin-top:80px;height:50px;"></div>
+  <span class="PageBoxTitle">PROJECTS</span>
+  <div style="height:20px;"></div>
+      <div class="ProjectSect">
+        <div style="overflow-x:scroll;" class="ProjectBar">
+        <div style="width:1200px;">
+  <div class="ProjectCover">
+    <div class="ProjectInner">
+    <div>
+    <img src="img/NewDesignIco.png" style="height:48px; width:auto;border-radius:16px; box-shadow:3px 3px 5px 2px RGB(20,20,20,0.1); transform:translateY(-3px); vertical-align: middle;padding:0px;margin:15px;border:0;"></img>
+      </div>
+    <p class="coverTitle" style="transform:translateY(-28px)">LIGHTFRAME</p>
+</div>
+    <p class="con-text2"style="margin-top:5px">完全免费、由每一个用户支持、面向用户的轻量级创作型桌面优化应用程序。</p>
+    <button class="innerItem" style="float:right;right:18px;top:80%;position:absolute;"onclick="window.open('https://lightframe.vilinko.com', '_blank');">Learn More</button>
+  </div>
+
+  <div class="ProjectCover">
+    <div class="ProjectInner">
+    <div>
+    <img src="img/products_vuip.png" style="height:48px; width:auto;border-radius:16px; box-shadow:3px 3px 5px 2px RGB(20,20,20,0.1); transform:translateY(-3px); vertical-align: middle;padding:0px;margin:15px;border:0;"></img>
+      </div>
+    <p class="coverTitle" style="transform:translateY(-28px)">VUI.PARSER</p>
+</div>
+    <p class="con-text2"style="margin-top:5px">简易、开源、轻量的数据解析器。</p>
+    <button class="innerItem" style="float:right;right:18px;top:80%;position:absolute;" onclick="window.open('https://docs.vilinko.com/docs/vui.parser/', '_blank');">Learn More</button>
+  </div>
+
+
+ <div class="ProjectCover">
+    <div class="ProjectInner">
+    <div>
+    <img src="img/products_vina.png" style="height:48px; width:auto;border-radius:16px; box-shadow:3px 3px 5px 2px RGB(20,20,20,0.1); transform:translateY(-3px); vertical-align: middle;padding:0px;margin:15px;border:0;"></img>
+      </div>
+    <p class="coverTitle" style="transform:translateY(-28px)">VINA UI</p>
+</div>
+    <p class="con-text2"style="margin-top:5px">轻量、开源、但尚未完善的DirectUI框架。</p>
+    <button class="innerItem" style="float:right;right:18px;top:80%;position:absolute;" onclick="window.open('https://github.com/EnderMo/Vina', '_blank');">Learn More</button>
+  </div>
+ 
+
+</div>
+<div class="ProjectGradient"></div>
+</div>
+</div>
+</div>
+
+<div class="PageBox">
+<div style="margin-top:80px;height:50px;">
+  <span class="PageBoxTitle">STORIES</span>
+  <div class="innerFrame" style="float:right;">
+      <p  style="margin:0;padding:0;">
+        <input type="text" name="" id="input-com" style="height:37px"value="" placeholder="Search Story..." class="innerFrame NoBorder"/>
+        <button class="innerItemSolid NoBorder" style="width:80px;height:39px" id="an"><svg xmlns="http://www.w3.org/2000/svg" style="transform:translate(0,3px);" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg></button>
+      </p>
+</div>
+      <ul id="scontainer" class="SearchBox"></ul>
+      <div class="StoryBg" id="StoryBack" onclick="StoryHide()">
+  <div class="StoryCard" id="StoryCont">
+    <object id="StoryInnerCon" data="" width="100%" height="100%"></object>
+  </div>
+</div>
+</div>
+
+<!--Story-->
+<main class="sortable">
+<div class="container" style="margin-top:30px;">
+  <div class="wrapper">
+  <div id="sortable" class="sjs-default">
+
+<div data-sjsel="Normal">
+    <div class="card">
+      <img class="card__picture" src="./img/stories/server.png" alt="">
+      <div class="card-infos">
+      <h2 class="card__title"><a href="#?">服务器 开启!</a></h2>
+      <p class="card__text">
+        Minecraft服务器进入试运行阶段（现在没了QAQ
+      </p>
+      </div>
+    </div>
+    </div>
+
+    <div data-sjsel="Normal">
+      <div class="card">
+      <img class="card__picture card__set" src="./img/stories/s2023.png" alt="">
+        <svg style="position:absolute; top:38%; left:50%; transform: translate(-50%,-50%); color:rgba(20,20,20,0.35)" xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-collection" viewBox="0 0 16 16">
+  <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"/>
+</svg>
+      <div class="card-infos">
+      <h2 class="card__title"><a href="#?link=stories/season2023.html">Season2023</a></h2>
+      <p class="card__text">
+        轻轻地把记忆留给季节
+      </p>
+      </div>
+    </div>
+    </div>
+
+    <div data-sjsel="Normal">
+    <div class="card">
+      <img class="card__picture" src="./img/stories/cimimoly_cv1.png" alt="">
+      <div class="card-infos">
+      <h2 class="card__title"><a href="#?link=stories/secondstoryqwq.html">夏初、云沫里的福腻</a></h2>
+      <p class="card__text">
+        沫海酱也来一起社死OwO
+      </p>
+      </div>
+    </div>
+    </div>
+
+    <div data-sjsel="Normal">
+    <div class="card">
+      <img class="card__picture" src="./img/stories/baicai_cv1.jpg" alt="">
+      <div class="card-infos">
+      <h2 class="card__title"><a href="#?link=stories/firststoryqwq.html">关于咱们的一点小东西</a></h2>
+      <p class="card__text">
+        被迫营业!
+      </p>
+      </div>
+    </div>
+    </div>
+
+
+
+  </div>
+
+  </div>
+</div>
+</main>
+
+
+</div>
+<div class="footer">
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:RGB(0,0,0); transform:none; !important; ">粤ICP备2025454076号</a>
+  <h5>Copyright © 2025 Vilinko Studio. All rights reserved.</h5>
+    <h5></h5>
+</div>
+  </body>
+
+ <script>
+       var s= false;
+  function ToggleDrawer()
+  {
+    if(s==false){
+      d.style.height=480+"px";
+      s=true; return;}
+          if(s==true){
+        d.style.height=0+"px";
+      s=false;return;
+      }
+
+  }
+  var i =0;
+   let d=document.querySelector('.iViewDrawer')
+        let viewbox=document.querySelector('.iView')
+        viewbox.addEventListener('wheel',(event)=>{
+            event.preventDefault()
+            i+=event.wheelDelta/2;
+            if(i<0)i=0;
+            if(i>480)i=480;
+            d.style.height=i+"px";
+          //  console.log(i)
+        })
+    </script>
+<script type="text/javascript">
+  //m-n
+  function refreshBackground()
+  {
+  var id=Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+  console.log(id);
+  var bg= document.getElementById("iView_bg");
+  var ti= document.getElementById("iView_t");
+  var de= document.getElementById("iView_hidden");
+   const srcs = [];
+srcs.push("img/VisPlanet.png", "img/VisNiceDay.png","img/Visika.png");
+   const titles = [];
+titles.push("In The Garden", "A Nice Day","Visika I");
+   const des = [];
+des.push("[价值与美不为任何方圆所束缚] (Art by CimiMoly)", "[惬意的阳光下总会有那点满怀期待的时刻] (Art by CimiMoly)","[价值与美不为任何方圆所束缚] (Art by CimiMoly)");
+  console.log(srcs[id]);
+bg.src=srcs[id];
+ti.innerHTML=titles[id];
+de.innerHTML=des[id];
+
+}
+</script>
+
+  <script>
+
+
+function scrollFunction() {
+          var view=document.getElementById("mainCon");
+  if (view.scrollTop >80) {
+    document.getElementById("navbar").style.padding = "20px 10px";
+      if (window.innerWidth < 700) {
+}
+  } else {
+    document.getElementById("navbar").style.padding = "50px 10px";
+          if (window.innerWidth < 700) {
+ document.getElementById("navbar").style.padding = "35px 10px";
+}
+  }
+}
+
+const container = document.querySelector('.ProjectBar');
+container.addEventListener('wheel', (event) => {
+event.preventDefault();
+container.scrollLeft += event.deltaY;
+});
+
+  </script>
+     
+    <script type="text/javascript">
+      function searchInit(){
+        var  searchList = document.querySelectorAll("h2");
+        //var searchList = ["qwq","qaq","www","awa","xwx"];
+        var oul = document.getElementById("scontainer");
+        document.getElementById("an").onclick = function(){
+          var inputcom = document.getElementById("input-com").value;
+          var a = [];
+          var k = 0;
+          for(var j = 0;j < searchList.length;j ++){
+            if(searchList[j].innerHTML.indexOf(inputcom) != -1 && document.getElementById("input-com").value!=""){
+              a[k++] = searchList[j].innerHTML;
+            }
+          }
+          //Clear
+          document.getElementById("scontainer").innerHTML = "<p>我们找到了这些 :</p>";
+          for(var p = 0;p < a.length;p ++){
+            //Add
+            let con = document.createElement("li");
+            con.innerHTML = a[p];
+            oul.appendChild(con);
+          }
+        };
+        //for(var i = 0;i < searchList.length;i ++){
+        //  let con = document.createElement("li");
+        //  con.innerHTML = searchList[i].innerHTML;
+        //  oul.appendChild(con);
+        //}
+      }
+    </script>
+<script type="text/javascript" src="js/sortable.min.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript">
+document.querySelector('#sortable').sortablejs();
+</script>
+
+<script>
+const btn = document.getElementById('an');
+const div = document.getElementById('scontainer');
+
+btn.addEventListener('click',function(event){
+  div.style.display='block';
+  event.stopPropagation();
+})
+
+document.addEventListener('click',function(){
+  div.style.display='none';
+});
+
+div.addEventListener('click',function(event){
+  event.stopPropagation();
+})
+</script>
+
+
+
+
+<script type="text/javascript">
+  function getHashParam() {
+  var url = location.href
+  var hash = url.substring(url.indexOf("#") + 1)
+  if(url.search('#')!==-1){return hash}
+  else {return ''}
+}
+function getHashLink(key) {
+  const url = location.href
+  const hash = url.substring(url.indexOf("#") + 1)
+  const searchIndex = hash.indexOf("?")
+  const search = searchIndex !== -1 ? hash.substring(searchIndex + 1) : ""
+  const usp = new URLSearchParams(search)
+  return usp.get(key)
+}
+function InitStoryCard(){
+if(getHashParam().includes('?link'))
+  {
+
+   document.getElementById("StoryBack").style.display="block";
+  document.getElementById("StoryCont").style.display="block";
+}
+else
+{
+    document.getElementById("StoryBack").style.display="none";
+  document.getElementById("StoryCont").style.display="none";
+}
+  var content=getHashLink('link');
+  console.log(content);
+    document.getElementById("StoryInnerCon").data=content;
+}
+window.addEventListener('hashchange', function() {
+  InitStoryCard();
+}, false);
+function toggleNav() {
+  var x = document.getElementById("navbar-right");
+  if (x.style.display == "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function CheckViewSize(){
+      var x = document.getElementById("navbar-right");
+                    if (window.innerWidth < 1110) {
+             
+              x.style.display = "none";
+             }
+             else{ x.style.display = "block"; }
+
+};
+ window.onload = function(){
+        searchInit();
+        InitStoryCard();
+        CheckViewSize();
+      }
+function StoryHide(){
+  location.hash='';
+}
+</script>
+
+<script type="text/javascript">
+    $('#navbar').load('com/uninav.html')
+</script>
+<script>
+window.onresize = function(){CheckViewSize();};
+</script>
+
+</html>
