@@ -1,0 +1,128 @@
+
+           .lineframe{
+border-radius:30px;
+        border:3px solid RGBA(255,255,255,0);
+        box-shadow:0 0 0 2px #737fbc;
+        color:#485696;
+        font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+        line-height:30px;
+        text-align:center;
+}
+      .innerItem{
+background-color:#c6d7ff;
+        border-radius:30px;
+        border:3px solid RGBA(255,255,255,0);
+        outline:none;
+        color:#485696;
+        position:relative;
+           font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+        line-height:30px;
+        text-align:center;
+        box-shadow:0 0 0 1px #737fbc;
+        overflow:hidden;
+        background-clip:padding-box;
+        
+      }
+      .innerItemSolid{
+background-color:#c6d7ff;
+        border-radius:30px;
+        border:3px solid RGBA(255,255,255,0);
+        outline:none;
+        color:#485696;
+        position:relative;
+           font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+        line-height:30px;
+        text-align:center;
+        box-shadow:0 0 0 1px RGBA(0,0,0,0);
+        overflow:hidden;
+        background-clip:padding-box;
+        
+      }
+
+            .innerFrame{
+background-color:RGB(255,255,255);
+        border-radius:30px;
+        border:2px solid #737fbc;
+        outline:none;
+        color:#485696;
+        position:relative;
+           font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+        line-height:30px;
+        text-align:center;
+        overflow:hidden;
+        background-clip:padding-box;
+        width:fit-content;
+         width:-webkit-fit-content;
+      }
+          .NoBorder{
+        border:3px solid RGBA(255,255,255,0);
+        outline:none!important;
+        box-shadow:0 0 0 1px RGBA(255,255,255,0)!important;
+      }
+      button:hover{
+             
+               animation:ExtOut 0.3s ease-in-out;
+               animation-iteration-count:1;
+               animation-fill-mode:forwards;
+}
+      .innerItem{
+             
+               animation:ExtIn 0.3s ease-in-out;
+               animation-iteration-count:1;
+               animation-fill-mode:forwards;
+     }
+    
+    
+      @keyframes ExtOut{
+        0%{
+            border:3px solid RGBA(255,255,255,0);
+        box-shadow: 0 0 0 1px #737fbc;
+
+}
+          
+       
+100%{
+          
+                        border:3px solid #c6d7ff;
+          box-shadow: 0 0 0 2px #737fbc;
+}
+
+}
+      @keyframes ExtIn{
+        0%{
+
+                        border:3px solid #c6d7ff;
+          box-shadow: 0 0 0 2px #737fbc;
+}
+          
+       
+100%{
+          
+            border:3px solid RGBA(255,255,255,0);
+        box-shadow: 0 0 0 1px #737fbc;
+}
+
+}
+
+@keyframes DivFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes DivBlurIn {
+  from {
+    opacity: 0;
+    filter:blur(5px);
+  }
+
+  to {
+    opacity: 1;
+        filter:blur(0px);
+  }
+}
